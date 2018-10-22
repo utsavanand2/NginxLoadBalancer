@@ -1,0 +1,76 @@
+version: "2"
+services:
+  nginx-fe:
+    container_name: nginx
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+      args: 
+        buildno: 1
+    image: nginx:alpine
+    restart: always
+    networks:
+      - lb_network
+    ports:
+      - "80:80"
+    links:
+      - node1
+      - node2
+      - node3
+      - node4
+  
+  node1:
+    build:
+      context: ./node
+      dockerfile: Dockerfile
+      args:
+        buildno: 1
+    image: node:8.12.0-alpine
+    restart: always
+    networks:
+      lb_network:
+        aliases:
+          - node1
+
+  
+  node2:
+    build:
+      context: ./node
+      dockerfile: Dockerfile
+      args:
+        buildno: 1
+    image: node:8.12.0-alpine
+    restart: always
+    networks:
+      lb_network:
+        aliases:
+          - node2
+
+  node3:
+    build:
+      context: ./node
+      dockerfile: Dockerfile
+      args:
+        buildno: 1
+    image: node:8.12.0-alpine
+    restart: always
+    networks:
+      lb_network:
+        aliases:
+          - node3
+
+  node4:
+    build:
+      context: ./node
+      dockerfile: Dockerfile
+      args:
+        buildno: 1
+    image: node:8.12.0-alpine
+    restart: always
+    networks:
+      lb_network:
+        aliases:
+          - node4
+
+networks:
+  lb_network:
