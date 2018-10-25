@@ -27,6 +27,7 @@ services:
         buildno: 1
     image: node:8.12.0-alpine
     restart: always
+    hostname: node1
     networks:
       lb_network:
         aliases:
@@ -41,6 +42,7 @@ services:
         buildno: 1
     image: node:8.12.0-alpine
     restart: always
+    hostname: node2
     networks:
       lb_network:
         aliases:
@@ -54,6 +56,7 @@ services:
         buildno: 1
     image: node:8.12.0-alpine
     restart: always
+    hostname: node3
     networks:
       lb_network:
         aliases:
@@ -67,6 +70,7 @@ services:
         buildno: 1
     image: node:8.12.0-alpine
     restart: always
+    hostname: node4
     networks:
       lb_network:
         aliases:
